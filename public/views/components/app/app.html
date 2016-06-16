@@ -1,0 +1,36 @@
+<!--
+    We are wrapping our app in a div with class .inner to enable our splash page to work
+    removing inner, or placing things outside of inner will prevent the page loading correctly.
+-->
+<div class="inner">
+    <header>
+        <div class="bg-lightgray">
+            <div class="navbar navbar-default">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" ui-sref="app.home"><i class="fa fa-fw fa-github-alt fs-20"></i></a>
+                    </div>
+                    <div class="navbar-text m-l-0 text-uppercase">{{appConfig.name}} {{appConfig.version}}</div>
+                    <ul class="nav navbar-nav">
+                        <li ng-class="{'active': activeState === 'app.home'}"><a ui-sref="app.home">Home</a></li>
+                        <li ng-class="{'active': activeState === 'app.page1'}"><a ui-sref="app.page1">Page 1</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <!-- This ui-view will hold our individual route view templates. -->
+    <div ui-view></div>
+
+    <footer class="bg-gray">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 p-v-15 text-right c-white font-light fs-12 inline-children">
+                    <div>{{appConfig.name}}.</div>
+                    <div>{{appConfig.license}}.</div>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
