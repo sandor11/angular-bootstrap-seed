@@ -3,7 +3,8 @@ module.exports = function (grunt) {
     grunt.initConfig({
         
         clean: {
-            css: 'public/css/release',
+            css: 'public/css/release/angular-bootstrap-web.min.css',
+            vendorcss: 'public/css/release/vendor-all.min.css',
             vendorjs: ['public/js/release/vendor-all.js','public/js/release/vendor-all.min.js'],
             js: ['public/js/release/angular-bootstrap-web.js','public/js/release/angular-bootstrap-web.min.js']
         },
@@ -160,7 +161,7 @@ module.exports = function (grunt) {
         watch: {
             less: {
               files: 'public/less/**/*.less',
-              tasks: 'release'
+              tasks: 'build-css'
             },
             
             js: {
@@ -175,6 +176,7 @@ module.exports = function (grunt) {
     grunt.registerTask('compile-less', ['less:compile']);
     grunt.registerTask('concat-css', ['concat:vendorcss', 'concat:css']);
     grunt.registerTask('copy-vendor-assets', ['bowercopy:libs', 'bowercopy:css', 'copy:vendorfonts']);
+    grunt.registerTask('build-css', ['clean:css', 'less:compile', 'cssmin', 'concat:css']);
     grunt.registerTask('build-js', ['clean:js', 'concat:js', 'uglify:source']);
     grunt.registerTask('release', ['clean', 'less:compile', 'copy-vendor-assets', 'cssmin', 'concat', 'uglify']);
 };
